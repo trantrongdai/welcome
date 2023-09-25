@@ -16,7 +16,7 @@ public class DemoApplication {
 
 	@GetMapping("/welcome/{name}")
 	public String welcome(@PathVariable("name") String name) {
-		return name+", Welcome to DaiTT 2 Family..!!";
+		return name+", Welcome to DaiTT 3 Family..!!";
 	}
 
 }
