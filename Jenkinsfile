@@ -18,7 +18,7 @@ pipeline {
         stage('Build docker image') {
             steps {
                 script{
-                    sh 'docker build -t trantrongdai/welcome .'
+                    sh 'sudo docker build -t trantrongdai/welcome .'
                 }
             }
         }
@@ -31,14 +31,14 @@ pipeline {
         stage('Push image to hub'){
             steps {
                 script{
-                    sh 'docker push trantrongdai/welcome'
+                    sh 'sudo docker push trantrongdai/welcome'
                 }
             }
         }
     }
     post {
         always {
-          sh 'docker logout'
+          sh 'sudo docker logout'
         }
   }
 }
