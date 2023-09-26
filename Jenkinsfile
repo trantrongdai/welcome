@@ -12,33 +12,33 @@ pipeline {
         stage("Build Maven") {
             steps{
                 checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/trantrongdai/welcome.git']])
-                bat 'mvn clean install'
+                sh 'mvn clean install'
             }
         }
         stage('Build docker image') {
             steps {
                 script{
-                    bat 'docker build -t trantrongdai/welcome .'
+                    sh 'docker build -t trantrongdai/welcome .'
                 }
             }
         }
         stage('Login to Docker Hub') {         
             steps{
-                bat 'docker login -u trantrongdai -p Khimnana306'        
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             	echo 'Login Completed'                
              }           
         } 
         stage('Push image to hub'){
             steps {
                 script{
-                    bat 'docker push trantrongdai/welcome'
+                    sh 'docker push trantrongdai/welcome'
                 }
             }
         }
     }
     post {
         always {
-          bat 'docker logout'
+          sh 'docker logout'
         }
   }
 }
