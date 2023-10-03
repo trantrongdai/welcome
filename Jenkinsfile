@@ -40,6 +40,9 @@ pipeline {
                 sshagent(credentials : ['app-ssh']) {
                     sh 'ssh -o StrictHostKeyChecking=no trongdaibk300692@34.142.239.77 uptime'
                     sh 'ssh -v trongdaibk300692@34.142.239.77'
+                    sh 'sudo docker stop ps -a'
+                    sh 'sudo docker pull trantrongdai/welcome'
+                    sh 'sudo docker run -it -d -p 9090:9090 trantrongdai/welcome'
                 }
             }
         }
