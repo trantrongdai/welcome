@@ -38,7 +38,7 @@ pipeline {
         stage ('Deploy') {
             steps{
                 sshagent(credentials : ['app-ssh']) {
-                    sh 'ssh -o StrictHostKeyChecking=no trongdaibk300692@35.198.251.210 uptime "sudo docker rm $(docker ps -a -q) && sudo docker pull trantrongdai/welcome && sudo docker run -it -d -p 9090:9090 trantrongdai/welcome"'
+                    sh 'ssh -o StrictHostKeyChecking=no trongdaibk300692@35.198.251.210 uptime "sudo docker ps -aq | xargs docker stop | xargs docker rm && sudo docker pull trantrongdai/welcome && sudo docker run -it -d -p 9090:9090 trantrongdai/welcome"'
                 }
             }
         }
