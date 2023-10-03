@@ -38,10 +38,10 @@ pipeline {
         stage ('Deploy') {
             steps{
                 sshagent(credentials : ['app-ssh']) {
-                    sh 'ssh -o StrictHostKeyChecking=no trongdaibk300692@35.198.251.210 uptime \n
-                    " sudo docker stop trantrongdai.welcome \n
-                    && sudo docker rm trantrongdai.welcome \n
-                    && sudo docker pull trantrongdai/welcome \n
+                    sh 'ssh -o StrictHostKeyChecking=no trongdaibk300692@35.198.251.210 uptime \
+                    " sudo docker stop trantrongdai.welcome \
+                    && sudo docker rm trantrongdai.welcome \
+                    && sudo docker pull trantrongdai/welcome \
                     && sudo docker run -it -d -p 9090:9090 --name=trantrongdai.welcome trantrongdai/welcome"'
                 }
             }
