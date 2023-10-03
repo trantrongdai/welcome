@@ -35,6 +35,14 @@ pipeline {
                 }
             }
         }
+        stage ('Deploy') {
+            steps{
+                sshagent(credentials : ['app-ssh']) {
+                    sh 'ssh -o StrictHostKeyChecking=no trongdaibk300692@34.142.239.77 uptime'
+                    sh 'ssh -v trongdaibk300692@34.142.239.77'
+                }
+            }
+        }
     }
     post {
         always {
