@@ -38,7 +38,7 @@ pipeline {
         stage ('Deploy') {
             steps{
                 sshagent(credentials : ['app-ssh']) {
-                    sh 'ssh -o StrictHostKeyChecking=no trongdaibk300692@35.198.251.210 uptime \
+                    sh 'ssh -o StrictHostKeyChecking=no trongdaibk300692@34.142.239.77 uptime \
                     " sudo docker stop trantrongdai.welcome \
                     && sudo docker rm --force trantrongdai.welcome \
                     && sudo docker pull trantrongdai/welcome \
